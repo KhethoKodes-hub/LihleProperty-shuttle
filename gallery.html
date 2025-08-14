@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Lihle Property and Shuttle Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #C45F1D;
+            --secondary-color: #6B8E23;
+            --accent-color: #FFD700;
+            --dark-color: #333333;
+            --light-color: #f8f8f8;
+            --gray-color: #777777;
+            --light-gray: #eaeaea;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto 30px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-color);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            letter-spacing: 1.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-color);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        /* Gallery Hero */
+        .gallery-hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .gallery-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb li:not(:last-child)::after {
+            content: '/';
+            margin-left: 10px;
+            color: var(--white);
+        }
+
+        /* Gallery Filter */
+        .gallery-filter {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 30px;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            height: 250px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: var(--white);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            border-radius: 8px;
+        }
+
+        .lightbox-caption {
+            color: var(--white);
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .lightbox-nav button {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .lightbox-nav button:hover {
+            background-color: var(--primary-color);
+        }
+
+        /* Video Section */
+        .video-section {
+            background-color: var(--light-color);
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            background-color: var(--white);
+        }
+
+        .testimonial-slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .stars::before {
+            content: '★★★★★';
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .rating span {
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--gray-color);
+        }
+
+        .client {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .client img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .client span {
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about h3,
+        .footer-links h3,
+        .footer-services h3,
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-about h3::after,
+        .footer-links h3::after,
+        .footer-services h3::after,
+        .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links ul,
+        .footer-services ul {
+            list-style: none;
+        }
+
+        .footer-links li,
+        .footer-services li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a,
+        .footer-services a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-services a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--light-gray);
+        }
+
+        .footer-contact i {
+            color: var(--primary-color);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .gallery-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 100px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 100px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: left 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .gallery-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> +27 (0) 81 892 6180</span>
+                    <span><i class="fas fa-envelope"></i> yangaauodia@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>LIHLE</h1>
+                    <span>Property & Shuttle Services</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="gallery.html" class="active">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="gallery-hero">
+        <div class="container">
+            <h1>Our Gallery</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Visual Showcase</h2>
+            <p class="section-subtitle">Explore our services through images</p>
+            
+            <div class="gallery-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="accommodation">Accommodation</button>
+                <button class="filter-btn" data-filter="transportation">Transportation</button>
+                <button class="filter-btn" data-filter="supplies">Supplies</button>
+                <button class="filter-btn" data-filter="team">Our Team</button>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" data-category="accommodation">
+                    <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Luxury Room">
+                    <div class="gallery-caption">
+                        <h3>Luxury Suite</h3>
+                        <p>Our premium accommodation option with all modern amenities</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="accommodation">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Living Area">
+                    <div class="gallery-caption">
+                        <h3>Comfortable Living</h3>
+                        <p>Spacious living areas in our accommodations</p>
+                    </div>
+                </div>
+                
+                <!-- Transportation -->
+                <div class="gallery-item" data-category="transportation">
+                    <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Shuttle Van">
+                    <div class="gallery-caption">
+                        <h3>Shuttle Service</h3>
+                        <p>Our comfortable and reliable shuttle vehicles</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="transportation">
+                    <img src="assets/Lihleairport.png" alt="Airport Transfer">
+                    <div class="gallery-caption">
+                        <h3>Airport Transfers</h3>
+                        <p>Prompt and professional airport shuttle services</p>
+                    </div>
+                </div>
+                
+                <!-- Supplies -->
+                <div class="gallery-item" data-category="supplies">
+                    <img src="assets/Lihlestationery.png" alt="Office Supplies">
+                    <div class="gallery-caption">
+                        <h3>Stationery Supplies</h3>
+                        <p>Quality office supplies for your business needs</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="supplies">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Uniforms">
+                    <div class="gallery-caption">
+                        <h3>Uniform Supplies</h3>
+                        <p>Professional uniforms for various industries</p>
+                    </div>
+                </div>
+                
+                <!-- Team -->
+                <div class="gallery-item" data-category="team">
+                    <img src="assets/lihlemanager.png" alt="Our Team">
+                    <div class="gallery-caption">
+                        <h3>Our Team</h3>
+                        <p>Professional and dedicated staff members</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-item" data-category="team">
+                    <img src="assets/customerserv.png" alt="Customer Service">
+                    <div class="gallery-caption">
+                        <h3>Customer Service</h3>
+                        <p>Our team providing excellent service to clients</p>
+                    </div>
+                </div>
+                
+                <!-- More Accommodation -->
+                <div class="gallery-item" data-category="accommodation">
+                    <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Bedroom">
+                    <div class="gallery-caption">
+                        <h3>Comfortable Bedrooms</h3>
+                        <p>Restful spaces designed for your comfort</p>
+                    </div>
+                </div>
+                
+                <!-- More Transportation -->
+                <div class="gallery-item" data-category="transportation">
+                    <img src="assets/lihleluxurybus.png" alt="Shuttle Interior">
+                    <div class="gallery-caption">
+                        <h3>Shuttle Interior</h3>
+                        <p>Comfortable seating and amenities in our vehicles</p>
+                    </div>
+                </div>
+                
+                <!-- More Supplies -->
+                <div class="gallery-item" data-category="supplies">
+                    <img src="assets/officeequipment.png" alt="Office Equipment">
+                    <div class="gallery-caption">
+                        <h3>Office Equipment</h3>
+                        <p>We supply all your office equipment needs</p>
+                    </div>
+                </div>
+                
+                <!-- More Team -->
+                <div class="gallery-item" data-category="team">
+                    <img src="assets/lihlestafftraining.png" alt="Training">
+                    <div class="gallery-caption">
+                        <h3>Staff Training</h3>
+                        <p>Continuous training to maintain high standards</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">Our Story in Motion</h2>
+            <p class="section-subtitle">Watch our video to learn more about LIHLE</p>
+            
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>  -->
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Client Experiences</h2>
+            <p class="section-subtitle">What our clients say about our services</p>
+            
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="rating" data-rating="9">
+                        <div class="stars"></div>
+                        <span>9/10</span>
+                    </div>
+                    <p>"The accommodation provided by LIHLE was exceptional. Clean, comfortable, and felt just like home. The staff were always helpful and professional."</p>
+                    <div class="client">
+                        <img src="assets/lihlenomvula.png" alt="Client">
+                        <span>Nomvula K.</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="rating" data-rating="10">
+                        <div class="stars"></div>
+                        <span>10/10</span>
+                    </div>
+                    <p>"Our office has been using LIHLE's stationery supply service for over a year now. Reliable, high-quality products, and always delivered on time."</p>
+                    <div class="client">
+                        <img src="assets/ThaboK.png" alt="Client">
+                        <span>Thabo M.</span>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="rating" data-rating="8">
+                        <div class="stars"></div>
+                        <span>8/10</span>
+                    </div>
+                    <p>"The shuttle service is punctual and comfortable. The drivers are professional and know the area well. Highly recommended for airport transfers."</p>
+                    <div class="client">
+                        <img src="assets/LeratoP.png" alt="Client">
+                        <span>Lerato P.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <span class="close-lightbox">&times;</span>
+            <img src="" alt="">
+            <div class="lightbox-caption"></div>
+            <div class="lightbox-nav">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>About LIHLE</h3>
+                    <p>Providing quality accommodation, reliable transportation, and essential supplies in the Northern Cape region since 2020.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-services">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Accommodation</a></li>
+                        <li><a href="services.html">Shuttle Services</a></li>
+                        <li><a href="services.html">Stationery Supplies</a></li>
+                        <li><a href="services.html">Uniform Supplies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 1974 Makalanie Olifantshoek, 8450</li>
+                        <li><i class="fas fa-phone"></i> +27 (0) 81 892 6180</li>
+                        <li><i class="fas fa-envelope"></i> yangaauodia@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 LIHLE PROPERTY AND SHUTTLE SERVICES (PTY) LTD. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Navigation
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        // Gallery Filter
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filter = btn.getAttribute('data-filter');
+                
+                // Filter gallery items
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Lightbox
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = lightbox.querySelector('img');
+        const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+        const closeLightbox = lightbox.querySelector('.close-lightbox');
+        const prevBtn = lightbox.querySelector('.prev-btn');
+        const nextBtn = lightbox.querySelector('.next-btn');
+        
+        let currentIndex = 0;
+        const images = [];
+        const captions = [];
+        
+        // Prepare images and captions for lightbox
+        galleryItems.forEach((item, index) => {
+            images.push(item.querySelector('img').src);
+            captions.push({
+                title: item.querySelector('.gallery-caption h3').textContent,
+                desc: item.querySelector('.gallery-caption p').textContent
+            });
+            
+            item.addEventListener('click', () => {
+                currentIndex = index;
+                updateLightbox();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+        
+        function updateLightbox() {
+            lightboxImg.src = images[currentIndex];
+            lightboxCaption.innerHTML = `<h3>${captions[currentIndex].title}</h3><p>${captions[currentIndex].desc}</p>`;
+        }
+        
+        closeLightbox.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+        
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            updateLightbox();
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % images.length;
+            updateLightbox();
+        });
+        
+        // Close lightbox when clicking outside the image
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+        
+        // Testimonial Ratings
+        document.querySelectorAll('.rating').forEach(rating => {
+            const score = parseInt(rating.getAttribute('data-rating'));
+            const stars = rating.querySelector('.stars');
+            
+            // Calculate percentage for star rating (10-point scale to 5-star)
+            const percentage = (score / 10) * 100;
+            stars.style.width = `${percentage}%`;
+            stars.style.overflow = 'hidden';
+            stars.style.whiteSpace = 'nowrap';
+        });
+        
+        // Animate gallery items on scroll
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.gallery-item, .testimonial');
+            
+            elements.forEach((element, index) => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        };
+        
+        // Set initial state for animated elements
+        document.querySelectorAll('.gallery-item, .testimonial').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); // Run once on load
+    </script>
+</body>
+</html>

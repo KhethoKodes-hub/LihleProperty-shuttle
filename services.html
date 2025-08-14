@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services - Lihle Property and Shuttle Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #C45F1D;
+            --secondary-color: #6B8E23;
+            --accent-color: #FFD700;
+            --dark-color: #333333;
+            --light-color: #f8f8f8;
+            --gray-color: #777777;
+            --light-gray: #eaeaea;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--primary-color);
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto 30px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray-color);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: 2px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--primary-color);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: 2px solid var(--secondary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--secondary-color);
+        }
+
+        .top-bar {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: flex-end;
+            gap: 20px;
+        }
+
+        .navbar {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .logo span {
+            font-size: 0.8rem;
+            color: var(--gray-color);
+            letter-spacing: 1.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        .hamburger .line {
+            width: 25px;
+            height: 3px;
+            background-color: var(--dark-color);
+            margin: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .services-hero {
+            height: 60vh;
+            min-height: 400px;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('assets/lihleoffice.png') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .services-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .breadcrumb a {
+            color: var(--white);
+            text-decoration: none;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .breadcrumb li:not(:last-child)::after {
+            content: '/';
+            margin-left: 10px;
+            color: var(--white);
+        }
+
+        .services-overview {
+            background-color: var(--light-color);
+        }
+
+        .services-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 40px;
+        }
+
+        .tab-btn {
+            padding: 12px 25px;
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .tab-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .service-detail {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 40px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-detail h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .service-detail p {
+            margin-bottom: 20px;
+            color: var(--gray-color);
+        }
+
+        .service-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature {
+            display: flex;
+            gap: 15px;
+        }
+
+        .feature-icon {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-top: 3px;
+        }
+
+        .feature-text h3 {
+            margin-bottom: 10px;
+            color: var(--dark-color);
+        }
+
+        .feature-text p {
+            margin-bottom: 0;
+        }
+
+        .service-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            height: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .guarantee {
+            background-color: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 0;
+        }
+
+        .guarantee h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .guarantee p {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+
+        .process {
+            background-color: var(--white);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .step h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .step p {
+            color: var(--gray-color);
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -20px;
+            width: 40px;
+            height: 2px;
+            background-color: var(--light-gray);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-about h3,
+        .footer-links h3,
+        .footer-services h3,
+        .footer-contact h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-about h3::after,
+        .footer-links h3::after,
+        .footer-services h3::after,
+        .footer-contact h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-links ul,
+        .footer-services ul {
+            list-style: none;
+        }
+
+        .footer-links li,
+        .footer-services li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a,
+        .footer-services a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover,
+        .footer-services a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-contact ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--light-gray);
+        }
+
+        .footer-contact i {
+            color: var(--primary-color);
+            margin-top: 3px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .services-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 100px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 100px);
+                background-color: var(--white);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 30px;
+                transition: left 0.5s ease;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hamburger.active .line:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .hamburger.active .line:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active .line:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .service-detail {
+                padding: 30px 20px;
+            }
+            
+            .step:not(:last-child)::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .services-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .guarantee h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="fas fa-phone"></i> +27 (0) 81 892 6180</span>
+                    <span><i class="fas fa-envelope"></i> yangaauodia@gmail.com</span>
+                </div>
+            </div>
+        </div>
+        
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>LIHLE</h1>
+                    <span>Property & Shuttle Services</span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="services-hero">
+        <div class="container">
+            <h1>Our Services</h1>
+            <ul class="breadcrumb">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="services-overview">
+        <div class="container">
+            <h2 class="section-title">What We Offer</h2>
+            <p class="section-subtitle">Measurable Services and Products you can trust</p>
+            
+            <div class="services-tabs">
+                <button class="tab-btn active" data-tab="accommodation">Accommodation</button>
+                <button class="tab-btn" data-tab="transportation">Transportation</button>
+                <button class="tab-btn" data-tab="stationery">Stationery Supplies</button>
+                <button class="tab-btn" data-tab="uniform">Uniform Supplies</button>
+            </div>
+            
+            <div class="tab-content active" id="accommodation">
+                <div class="service-detail">
+                    <h2>Quality Accommodation Services</h2>
+                    <p>At LIHLE Property and Shuttle Services, we provide comfortable and secure accommodation options in the Northern Cape region. Our properties are carefully maintained to ensure a "home away from home" experience for all our guests.</p>
+                    
+                    <div class="service-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-home"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Fully Furnished</h3>
+                                <p>All our accommodations come fully furnished with quality furniture and appliances.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Modern Amenities</h3>
+                                <p>Enjoy high-speed internet, DSTV, and other modern conveniences.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>24/7 Security</h3>
+                                <p>Our properties have round-the-clock security for your peace of mind.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-concierge-bell"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Housekeeping</h3>
+                                <p>Regular cleaning and maintenance services included.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-gallery">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Accommodation">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Accommodation">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/lihlesecurity.png" alt="Accommodation">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/lihlehousekeeping.png" alt="Accommodation">
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html" class="btn btn-primary">Book Accommodation</a>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="transportation">
+                <div class="service-detail">
+                    <h2>Reliable Transportation Services</h2>
+                    <p>Our shuttle services provide safe, comfortable, and punctual transportation throughout the Northern Cape region. Whether you need airport transfers, daily commutes, or special event transportation, we've got you covered.</p>
+                    
+                    <div class="service-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-shuttle-van"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Modern Fleet</h3>
+                                <p>Well-maintained vehicles with comfortable seating and air conditioning.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Professional Drivers</h3>
+                                <p>Experienced, licensed, and courteous drivers.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Punctual Service</h3>
+                                <p>We value your time and guarantee on-time arrivals.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Flexible Routes</h3>
+                                <p>Customizable routes to suit your specific needs.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-gallery">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Transportation">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/lihleprodrivers.png" alt="Transportation">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1557223562-6c77ef16210f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Transportation">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/flexibleroutes.png" alt="Transportation">
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html" class="btn btn-primary">Book Transportation</a>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="stationery">
+                <div class="service-detail">
+                    <h2>Comprehensive Stationery Supplies</h2>
+                    <p>We provide a wide range of high-quality stationery products for businesses and individuals. From basic office supplies to specialized equipment, we can meet all your stationery needs with prompt delivery service.</p>
+                    
+                    <div class="service-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-boxes"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Wide Selection</h3>
+                                <p>Everything from pens and paper to printers and toners.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Prompt Delivery</h3>
+                                <p>Fast and reliable delivery to your location.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Competitive Pricing</h3>
+                                <p>Quality products at affordable prices.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Inventory Management</h3>
+                                <p>We can monitor and replenish your supplies automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-gallery">
+                        <div class="gallery-item">
+                            <img src="assets/lihlepen.png" alt="Stationery">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/lihledelivery.png" alt="Stationery">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/lihlestationer.png" alt="Stationery">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/lihleinventory.png" alt="Stationery">
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html" class="btn btn-primary">Order Stationery</a>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="uniform">
+                <div class="service-detail">
+                    <h2>Quality Uniform Supplies</h2>
+                    <p>We supply high-quality uniforms for various industries, including corporate, hospitality, healthcare, and more. Our uniforms are durable, comfortable, and designed to project professionalism.</p>
+                    
+                    <div class="service-features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Custom Designs</h3>
+                                <p>Customizable to match your brand identity.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-fabric"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Quality Materials</h3>
+                                <p>Durable fabrics that withstand frequent washing.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Perfect Fit</h3>
+                                <p>Available in a range of sizes or custom measurements.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                            <div class="feature-text">
+                                <h3>Replacement Program</h3>
+                                <p>Scheduled replacement of worn-out uniforms.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-gallery">
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Uniforms">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/lihlefabric.png" alt="Uniforms">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/lihlecustom.png" alt="Uniforms">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/lihleworn.png" alt="Uniforms">
+                        </div>
+                    </div>
+                    
+                    <a href="contact.html" class="btn btn-primary">Order Uniforms</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="guarantee">
+        <div class="container">
+            <h2>Our Satisfaction Guarantee</h2>
+            <p>We are so confident of our services that we actually guarantee your satisfaction with us. LIHLE PROPERTY AND SHUTTLE SERVICES (PTY) LTD guarantees to respond to and promptly resolve any specific service issues within one business day.</p>
+            <a href="contact.html" class="btn btn-secondary">Contact Us Today</a>
+        </div>
+    </section>
+
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title">The LIHLE Process</h2>
+            <p class="section-subtitle">How we deliver exceptional service every time</p>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Initial Consultation</h3>
+                    <p>We discuss your specific needs and requirements to understand how we can best serve you.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Custom Solution</h3>
+                    <p>We develop a tailored solution that meets your exact specifications and budget.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Implementation</h3>
+                    <p>Our trained professionals implement the solution with attention to every detail.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Quality Check</h3>
+                    <p>We conduct thorough quality checks using our LIHLE Tracker system.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Ongoing Support</h3>
+                    <p>We provide continuous support and make adjustments as needed.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>About LIHLE</h3>
+                    <p>Providing quality accommodation, reliable transportation, and essential supplies in the Northern Cape region since 2020.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-services">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="services.html">Accommodation</a></li>
+                        <li><a href="services.html">Shuttle Services</a></li>
+                        <li><a href="services.html">Stationery Supplies</a></li>
+                        <li><a href="services.html">Uniform Supplies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 1974 Makalanie Olifantshoek, 8450</li>
+                        <li><i class="fas fa-phone"></i> +27 (0) 81 892 6180</li>
+                        <li><i class="fas fa-envelope"></i> yangaauodia@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 LIHLE PROPERTY AND SHUTTLE SERVICES (PTY) LTD. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+        
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                btn.classList.add('active');
+                
+                const tabId = btn.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+        
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.step');
+            
+            elements.forEach((element, index) => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    setTimeout(() => {
+                        element.style.opacity = '1';
+                        element.style.transform = 'translateY(0)';
+                    }, index * 200);
+                }
+            });
+        };
+        
+        document.querySelectorAll('.step').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+        
+        window.addEventListener('scroll', animateOnScroll);
+        animateOnScroll(); 
+    </script>
+</body>
+</html>
